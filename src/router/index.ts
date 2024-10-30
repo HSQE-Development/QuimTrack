@@ -1,10 +1,26 @@
+import { useAuthStore } from "@/store/authStore";
 import { createRouter, createWebHashHistory } from "vue-router";
+import AppLayout from "@/components/layouts/AppLayout.vue";
+
 const routes = [
   { path: "/login", component: () => import("@/views/Login/Index.vue") },
   {
     path: "/",
-    component: () => import("@/views/Login/Index.vue"),
-    name: "login",
+    component: AppLayout,
+    children: [
+      {
+        path: "",
+        component: () => import("@/views/Dashboard/Index.vue"),
+        name: "dashboard",
+      },
+    ],
+    // @ts-ignore
+    beforeEnter: (to: any, from: any, next: any) => {
+      const authStore = useAuthStore();
+      console.log(authStore.authUser);
+      if (!authStore.authUser?.token.access) next("/login");
+      else next();
+    },
   },
 ];
 

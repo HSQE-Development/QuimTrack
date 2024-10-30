@@ -10,7 +10,13 @@ declare module 'vue' {
     AButton: typeof import('ant-design-vue/es')['Button']
     AInput: typeof import('ant-design-vue/es')['Input']
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
+    APopover: typeof import('ant-design-vue/es')['Popover']
+    AppLayout: typeof import('./src/components/layouts/AppLayout.vue')['default']
+    ATooltip: typeof import('ant-design-vue/es')['Tooltip']
+    BentoCard: typeof import('./src/components/common/BentoCard.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Navbar: typeof import('./src/components/layouts/Navbar.vue')['default']
+    ProfileNavbar: typeof import('./src/components/layouts/ProfileNavbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
