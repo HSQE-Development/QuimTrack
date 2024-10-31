@@ -50,11 +50,14 @@ const chartOptions = ref({
 </script>
 <template>
     <section class="w-full flex-1 flex flex-col px-4">
-        <div class="flex flex-col items-start justify-center">
-            <h1 class="text-4xl">Hola 👋,{{ authUser?.user.firstName }} </h1>
-            <div class="w-full flex items-center justify-between">
-                <h2 class="text-zinc-400">{{ actualDateToString() }}</h2>
+        <div class="flex w-full justify-between items-center">
+            <div class="flex flex-col items-start justify-center">
+              <h1 class="text-4xl">Hola 👋,{{ authUser?.user.firstName }} </h1>
+              <div class="w-full flex items-center justify-between">
+                  <h2 class="text-zinc-400">{{ actualDateToString() }}</h2>
+              </div>
             </div>
+            <a-button type="primary">Primary Button</a-button>
         </div>
         <div class="grid grid-cols-12 grid-rows-12 w-full h-full gap-4 ">
             <BentoCard class-name="col-span-4 row-span-12 bg-white relative">
@@ -66,7 +69,6 @@ const chartOptions = ref({
                 
                 <VueEcharts :option="chartOptions" style="width: 100%; height: 100%;" />
             </BentoCard>
-
         </div>
             <!-- <div class="flex flex-col items-start justify-center">
                 <h1 class="text-4xl">Hola 👋,{{ authUser?.user.firstName }} </h1>
