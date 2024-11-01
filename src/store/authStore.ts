@@ -28,6 +28,10 @@ export const useAuthStore = defineStore("authStore", {
         this.loading = false;
       }
     },
+    async logout() {
+      this.authUser = null;
+      localStorage.removeItem("token_auth");
+    },
   },
   persist: {
     storage: localStorage,

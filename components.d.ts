@@ -12,6 +12,7 @@ declare module 'vue' {
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
     APopover: typeof import('ant-design-vue/es')['Popover']
     AppLayout: typeof import('./src/components/layouts/AppLayout.vue')['default']
+    ASkeleton: typeof import('ant-design-vue/es')['Skeleton']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     BentoCard: typeof import('./src/components/common/BentoCard.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

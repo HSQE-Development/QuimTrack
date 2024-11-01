@@ -3,9 +3,9 @@ import Navbar from '@/components/layouts/Navbar.vue';
 </script>
 
 <template>
-    <div class="bg-back_primary w-screen h-screen flex flex-col items-center justify-start relative overflow-auto">
+    <div class="bg-back_primary w-screen h-screen flex flex-col ">
         <Navbar/>
-        <main class="w-full flex flex-col ">
+        <main class="relative h-full flex-1 flex flex-col w-full overflow-auto">
             <router-view></router-view>
         </main>
     </div>

@@ -4,7 +4,7 @@ defineProps<{className?:string, title?:string, icon?:string,desc?:string}>()
 
 </script>
 <template>
-    <div :class="cn('border p-4 border-zinc-300 w-full h-full rounded-3xl',className)">
+    <div :class="cn('border p-4 border-zinc-300 w-full h-full rounded-3xl hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-100',className)">
         <div class="flex items-center justify-between gap-2" v-if="title">
            <div class="flex items-center justify-center gap-2">
                 <div class="p-2 border rounded-full border-zinc-400">

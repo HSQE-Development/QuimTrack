@@ -14,8 +14,16 @@ import { CoChartPie } from "oh-vue-icons/icons";
 import { CoChart } from "oh-vue-icons/icons";
 import VueEcharts from "vue-echarts";
 import { BiThreeDotsVertical } from "oh-vue-icons/icons";
+import { IoPieChartOutline } from "oh-vue-icons/icons";
 
-addIcons(MdSpacedashboardRound, HiUser, CoChartPie, CoChart, BiThreeDotsVertical);
+addIcons(
+  MdSpacedashboardRound,
+  HiUser,
+  CoChartPie,
+  CoChart,
+  BiThreeDotsVertical,
+  IoPieChartOutline
+);
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
