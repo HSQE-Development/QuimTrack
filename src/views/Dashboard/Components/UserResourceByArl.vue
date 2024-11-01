@@ -6,20 +6,18 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { BarChart } from 'echarts/charts';
 import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
 import { BarSeriesOption, EChartsOption  } from 'echarts';
-
 use([CanvasRenderer, BarChart, GridComponent, TooltipComponent, LegendComponent]);
 
 const trackingStore = useTrackingStore()
 onMounted( async() => {
-    await trackingStore.userAllocationByArl()
+    await trackingStore.userResourceByArl()
 })
 
-const chartData = computed<EChartsOption>( () => {
-    const trackingData = trackingStore.trackings_user_allocation_by_arl;
+const chartData = computed<EChartsOption>(() => {
+    const trackingData = trackingStore.trackings_user_resource_by_arl;
     if (!trackingData || typeof trackingData !== 'object' || Object.keys(trackingData).length === 0) {
         return {};
     }
-
     const userNames = Object.keys(trackingData);
     if (userNames.length === 0) {
         return {};
@@ -68,12 +66,10 @@ const chartData = computed<EChartsOption>( () => {
         },
         series: seriesData,
     };
-
 })
 
 </script>
-
-<template>
+<template >
     <div class="w-full h-full flex items-center justify-center">
         <a-skeleton v-if="trackingStore.loading" active class="w-20 rotate-[270deg]"/>
         <VueEcharts  v-if="!trackingStore.loading && chartData && Object.keys(chartData).length > 0" :option="chartData  || []" style="width: 100%; height: 300px" autoresize />

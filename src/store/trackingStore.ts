@@ -1,10 +1,14 @@
 import { createAdaptedTracking } from "@/adapters/tracking.adapter";
 import {
   ApiResponse,
+  AsignedResourceByArl,
   StateByArl,
   Tracking,
   TrackingResponse,
+  ResourceByArl,
   UserAllocationByArl,
+  UserResourceByArl,
+  AsignedResourceByUser,
 } from "@/models";
 import axiosInstance from "@/utils/axiosInstance";
 import { defineStore } from "pinia";
@@ -14,6 +18,10 @@ export const useTrackingStore = defineStore("trackingStore", {
     trackings: [] as Tracking[],
     trackings_state_by_arl: {} as StateByArl,
     trackings_user_allocation_by_arl: {} as UserAllocationByArl,
+    trackings_asigned_resource_by_arl: {} as AsignedResourceByArl,
+    trackings_user_resource_by_arl: {} as UserResourceByArl,
+    trackings_resource_by_arl: {} as ResourceByArl,
+    trackings_asigned_resource_by_user: {} as AsignedResourceByUser,
     loading: false,
   }),
   actions: {
@@ -49,15 +57,17 @@ export const useTrackingStore = defineStore("trackingStore", {
         this.loading = false;
       }
     },
+
     async userAllocationByArl(filters: any[] = []) {
       this.loading = true;
       try {
         const response = await axiosInstance.get<
-          ApiResponse<{ trackings_user_allocation_by_arl: UserAllocationByArl }>
+          ApiResponse<{
+            trackings_user_allocation_by_arl: UserAllocationByArl;
+          }>
         >("/tracking/user_allocation_by_arl", {
           params: filters,
         });
-
         this.trackings_user_allocation_by_arl =
           response.data.data.trackings_user_allocation_by_arl;
       } catch (error) {
@@ -65,41 +75,78 @@ export const useTrackingStore = defineStore("trackingStore", {
         this.loading = false;
       }
     },
-  },
-  getters: {
-    getTrackingStateByArlAndState: (state) => {
-      return state.trackings.reduce((result, tracking) => {
-        const arlName = tracking.arl.name;
-        const stateName = tracking.state.name;
 
-        if (!result[arlName]) {
-          result[arlName] = {};
-        }
-        if (!result[arlName][stateName]) {
-          result[arlName][stateName] = 0;
-        }
-        result[arlName][stateName]++;
-        return result;
-      }, {} as Record<string, Record<string, number>>);
+    async asignedResourceByArl(filters: any[] = []) {
+      this.loading = true;
+      try {
+        const response = await axiosInstance.get<
+          ApiResponse<{
+            trackings_asigned_resource_by_arl: AsignedResourceByArl;
+          }>
+        >("/tracking/asigned_resource_by_arl", {
+          params: filters,
+        });
+
+        this.trackings_asigned_resource_by_arl =
+          response.data.data.trackings_asigned_resource_by_arl;
+      } catch (error) {
+      } finally {
+        this.loading = false;
+      }
     },
-    getCompanyCountForUserByArl: (state) => {
-      return state.trackings.reduce((result, tracking) => {
-        const arlName = tracking.arl.name;
-        const userId = tracking.user.id;
+    async userResourceByArl(filters: any[] = []) {
+      this.loading = true;
+      try {
+        const response = await axiosInstance.get<
+          ApiResponse<{
+            trackings_user_resource_by_arl: UserResourceByArl;
+          }>
+        >("/tracking/user_resource_by_arl", {
+          params: filters,
+        });
 
-        if (!result[arlName]) {
-          result[arlName] = {};
-        }
+        this.trackings_user_resource_by_arl =
+          response.data.data.trackings_user_resource_by_arl;
+      } catch (error) {
+      } finally {
+        this.loading = false;
+      }
+    },
+    async resourceByArl(filters: any[] = []) {
+      this.loading = true;
+      try {
+        const response = await axiosInstance.get<
+          ApiResponse<{
+            trackings_resource_by_arl: ResourceByArl;
+          }>
+        >("/tracking/resource_by_arl", {
+          params: filters,
+        });
 
-        if (!result[arlName][userId]) {
-          result[arlName][userId] = {
-            userName: `${tracking.user.firstName} ${tracking.user.lastName}`,
-            companyCount: 0,
-          };
-        }
-        result[arlName][userId].companyCount++;
-        return result;
-      }, {} as Record<string, Record<string, { userName: string; companyCount: number }>>);
+        this.trackings_resource_by_arl =
+          response.data.data.trackings_resource_by_arl;
+      } catch (error) {
+      } finally {
+        this.loading = false;
+      }
+    },
+    async asignedResourceByUser(filters: any[] = []) {
+      this.loading = true;
+      try {
+        const response = await axiosInstance.get<
+          ApiResponse<{
+            trackings_asigned_resource_by_user: AsignedResourceByUser;
+          }>
+        >("/tracking/asigned_resource_by_user", {
+          params: filters,
+        });
+
+        this.trackings_asigned_resource_by_user =
+          response.data.data.trackings_asigned_resource_by_user;
+      } catch (error) {
+      } finally {
+        this.loading = false;
+      }
     },
   },
 });

@@ -13,6 +13,7 @@ declare module 'vue' {
     APopover: typeof import('ant-design-vue/es')['Popover']
     AppLayout: typeof import('./src/components/layouts/AppLayout.vue')['default']
     ASkeleton: typeof import('ant-design-vue/es')['Skeleton']
+    ASkeletonImage: typeof import('ant-design-vue/es')['SkeletonImage']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     BentoCard: typeof import('./src/components/common/BentoCard.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

@@ -17,7 +17,6 @@ const routes = [
     // @ts-ignore
     beforeEnter: (to: any, from: any, next: any) => {
       const authStore = useAuthStore();
-      console.log(authStore.authUser);
       if (!authStore.authUser?.token.access) next("/login");
       else next();
     },

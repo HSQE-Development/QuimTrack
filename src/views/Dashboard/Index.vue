@@ -10,6 +10,10 @@ import { actualDateToString } from '@/utils/date-to-string.util';
 import { useTrackingStore } from '@/store/trackingStore';
 import StateCompanyByArl from './Components/StateCompanyByArl.vue';
 import CompanyCountForUserByArl from './Components/CompanyCountForUserByArl.vue';
+import AsignedResourceByArl from './Components/AsignedResourceByArl.vue';
+import UserResourceByArl from './Components/UserResourceByArl.vue';
+import ResourceByArl from './Components/ResourceByArl.vue';
+import AsignedResourceByUser from './Components/AsignedResourceByUser.vue';
 
 use([CanvasRenderer, BarChart, GridComponent, TooltipComponent, LegendComponent]);
 const {authUser} = useAuthStore()
@@ -33,52 +37,30 @@ onMounted(async () => {
             <a-button type="primary">Primary Button</a-button>
         </div>
         <a-skeleton active v-if="trackingStore.loading"/>
-        <div class="w-full flex items-center justify-between gap-4 my-4">
-          <BentoCard class-name="bg-white relative w-[30%] border-0 drop-shadow-md">
-            s
-            s
+        <div class="w-full flex flex-col lg:flex-row items-center justify-between gap-4 my-4 relative">
+          <BentoCard class-name="bg-white relative w-full lg:w-[30%] border-0 drop-shadow-md lg:sticky top-0 flex flex-col">
+            <div class="w-full h-60">
+              <AsignedResourceByUser/>
+            </div>
           </BentoCard>
-          <div class="flex-1 grid grid-cols-8 h-auto gap-4">
-            <BentoCard class-name="col-span-3 row-span-12 bg-white relative" title="Horas asignadas por ARL" icon="io-pie-chart-outline">
-              s
-              s
+          <div class="flex-1 grid grid-cols-8 h-auto gap-4 w-full lg:w-auto">
+            <BentoCard class-name="col-span-8 md:col-span-3 row-span-4 bg-white relative" title="Horas asignadas por ARL" icon="io-pie-chart-outline">
+              <AsignedResourceByArl/>
             </BentoCard>
-            <BentoCard class-name="col-span-5 row-span-12 bg-white relative" title="Asignación empresas por ARL" icon="co-chart">
+            <BentoCard class-name="col-span-8 md:col-span-5 row-span-4 bg-white relative" title="Asignación empresas por ARL" icon="co-chart">
               <CompanyCountForUserByArl/>
-              
             </BentoCard>
-            <BentoCard class-name="col-span-4 row-span-12 bg-white relative" title="Estado de empresas por ARL" icon="co-chart">
+            <BentoCard class-name="col-span-8 md:col-span-4 row-span-4 bg-white relative" title="Estado de empresas por ARL" icon="co-chart">
               <StateCompanyByArl/>
             </BentoCard>
-            <BentoCard class-name="col-span-4 row-span-12 bg-white relative" title="Recurso asignado por ARL" icon="co-chart">
-              s
-              s
+            <BentoCard class-name="col-span-8 md:col-span-4 row-span-4 bg-white relative" title="Recurso asignado por ARL" icon="co-chart">
+              <ResourceByArl/>
+            </BentoCard>
+            <BentoCard class-name="col-span-8 row-span-4 bg-white relative" title="Asignación empresas por ARL" icon="co-chart">
+              <UserResourceByArl/>
             </BentoCard>
           </div>
-
         </div>
-            <!-- <div class="flex flex-col items-start justify-center">
-                <h1 class="text-4xl">Hola 👋,{{ authUser?.user.firstName }} </h1>
-                <div class="w-full flex items-center justify-between">
-                    <h2 class="text-zinc-400">{{ actualDateToString() }}</h2>
-                </div>
-            </div>
-
-        <div class="grid grid-cols-12 h-full gap-4 ">
-            <BentoCard class-name="col-span-4 bg-white relative">
-                Hola
-                <div class="w-12 h-12 bg-black absolute "></div>
-            </BentoCard>
-            <div class="col-span-8 grid grid-cols-12 grid-rows-4 gap-4">
-                <BentoCard class-name="col-span-6 row-span-3" title="Estado de recurso por ARL" icon="co-chart"></BentoCard>
-                <BentoCard class-name="col-span-6 row-span-3 bg-blue_primary" title="Estado de empresas por ARL" icon="co-chart">
-                    
-                    <VueEcharts :option="chartOptions" style="width: 100%; height: 400px;" />
-                </BentoCard>
-                <BentoCard class-name="col-span-12 row-span-3 bg-blue_primary">Hola</BentoCard>
-                <BentoCard class-name="col-span-5 row-span-3" title="Horas asignadas por ARL" icon="co-chart-pie">Hola</BentoCard>
-            </div>
-        </div> -->
     </section>
 </template>
 

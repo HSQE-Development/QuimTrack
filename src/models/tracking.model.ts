@@ -63,9 +63,26 @@ export interface StateByArl {
   };
 }
 
-
 export interface UserAllocationByArl {
   [userName: string]: {
     [arlName: string]: number;
+  };
+}
+export interface AsignedResourceByArl {
+  [arlname: string]: number;
+}
+export interface UserResourceByArl {
+  [userName: string]: {
+    [arlName: string]: number;
+  };
+}
+export interface ResourceByArl {
+  [arlname: string]: {
+    [stateName: string]: number;
+  };
+}
+export interface AsignedResourceByUser {
+  [userName: string]: {
+    [resourceName: string]: number;
   };
 }

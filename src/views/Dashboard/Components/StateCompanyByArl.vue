@@ -12,7 +12,6 @@ const trackingStore = useTrackingStore()
 
 onMounted( async() => {
     await trackingStore.stateByArl()
-    console.log(trackingStore.trackings_state_by_arl)
 })
 
 const chartData = computed<EChartsOption>(() => {
